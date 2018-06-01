@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DPI Calculator / PPI Calculator</title>
+    <link href="dpiCalc.css" rel="stylesheet">
+    <script src="dpiCalc.js"></script>
+</head>
+
+<body onload="set_mon(window.devicePixelRatio ? window.devicePixelRatio * screen.width : screen.width, window.devicePixelRatio ? window.devicePixelRatio * screen.height : screen.height);gen_links();">
+    <h1>DPI Calculator /
+        <a href="https://en.wikipedia.org/wiki/Pixels_per_inch" title="Pixels per inch">PPI</a> Calculator</h1>
+    <h4>for displays with square
+        <a href="https://en.wikipedia.org/wiki/Pixel">pixels</a>.</h4>
+    <noscript>
+        <h2>This calculator requires JavaScript.</h2>
+    </noscript>
+    <form onsubmit="do_dpi()" action="#">
+        <fieldset>
+            <legend>Monitor data</legend>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="hor">Horizontal resolution:</label>
+                            <input id="hor" type="number" size="4" value="1280" onkeyup="do_dpi()" /> pixels
+                            <br />
+
+                            <label for="vert">Vertical resolution:</label>
+                            <input id="vert" type="number" size="4" value="1024" onkeyup="do_dpi()" /> pixels
+                            <br />
+
+                            <label for="diag">Diagonal:</label>
+                            <input id="diag" type="number" size="4" value="22" onkeyup="do_dpi()" /> inches (
+                            <span id="metricdiag">xx</span>cm)
+                            <br />
+
+                        </td>
+                        <td>
+                            Megapixels:
+                            <b id="mpix">?.?</b>
+                            <br /> Aspect ratio:
+                            <b id="aspect">?:?</b>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <b id="result">
+                    Loading...
+                </b>
+                <input type="button" onclick="document.getElementById('saved').innerHTML = document.getElementById('saved').innerHTML + document.getElementById('result').innerHTML + '<br>';"
+                    value="Remember" />
+                <br />
+                <b id="saved" style="color: #444;"></b>
+            </div>
+        </fieldset>
+    </form>
+
+    <p>Noteworthy and common display sizes of monitors, PCs, notebooks, tablets, phablets, smartphones, handhelds and HMDs.
+        Link color takes into account typical viewing distance:</p>
+
+    <div id="multilist">
+        <ul id="mylist">
+        </ul>
+        <ul>
+            <li style="list-style-type: none;" id="resolutions">
+                <b>Resolutions</b>
+                <li>
+                    <a href="javascript:set_mon(320,240)">320x240</a> QVGA</li>
+                <li>
+                    <a href="javascript:set_mon(640,480)">640x480</a> VGA (NTSC square)</li>
+                <li>
+                    <a href="javascript:set_mon(768,576)">768x576</a> PAL (square)</li>
+                <li>
+                    <a href="javascript:set_mon(800,600)">800x600</a> SVGA</li>
+                <li>
+                    <a href="javascript:set_mon(960,540)">960x540</a> qHD</li>
+                <li>
+                    <a href="javascript:set_mon(1024,768)">1024x768</a> XGA</li>
+                <li>
+                    <a href="javascript:set_mon(1280,720)">1280x720</a> HDTV, 720p</li>
+                <li>
+                    <a href="javascript:set_mon(1280,1024)">1280x1024</a> SXGA</li>
+                <li>
+                    <a href="javascript:set_mon(1366,768)">1366x768</a> HD</li>
+                <li>
+                    <a href="javascript:set_mon(1400,1050)">1400x1050</a> SXGA+</li>
+                <li>
+                    <a href="javascript:set_mon(1440,900)">1440x900</a> WSXGA</li>
+                <li>
+                    <a href="javascript:set_mon(1600,900)">1600x900</a> HD+, 900p</li>
+                <li>
+                    <a href="javascript:set_mon(1600,1200)">1600x1200</a> UXGA</li>
+                <li>
+                    <a href="javascript:set_mon(1680,945)">1680x945</a> WXGA++</li>
+                <li>
+                    <a href="javascript:set_mon(1680,1050)">1680x1050</a> WSXGA+</li>
+                <li>
+                    <a href="javascript:set_mon(1920,1080)">1920x1080</a> HDTV 1080, FullHD, 1080p</li>
+                <li>
+                    <a href="javascript:set_mon(1920,1200)">1920x1200</a> WUXGA</li>
+                <li>
+                    <a href="javascript:set_mon(2048,1536)">2048x1536</a> QXGA</li>
+                <li>
+                    <a href="javascript:set_mon(2560,1080)">2560x1080</a> UW-UXGA</li>
+                <li>
+                    <a href="javascript:set_mon(2560,1440)">2560x1440</a> WQHD, 1440p</li>
+                <li>
+                    <a href="javascript:set_mon(2560,1600)">2560x1600</a> WQXGA</li>
+                <li>
+                    <a href="javascript:set_mon(3200,1600)">3200x1600</a> QHD+</li>
+                <li>
+                    <a href="javascript:set_mon(3440,1440)">3440x1440</a> UW-QHD</li>
+                <li>
+                    <a href="javascript:set_mon(3840,1600)">3840x1600</a> UW-QHD+</li>
+                <li>
+                    <a href="javascript:set_mon(3840,2160)">3840x2160</a>
+                    <a href="https://en.wikipedia.org/wiki/4K_resolution#QFHD_.283840x2160.29">QFHD</a>, 4K, UltraHD, UHD-1</li>
+                <li>
+                    <a href="javascript:set_mon(3840,2400)">3840x2400</a> WQUXGA</li>
+                <li>
+                    <a href="javascript:set_mon(4096,2160)">4096x2160</a> DCI 4K</li>
+                <li>
+                    <a href="javascript:set_mon(5120,2880)">5120x2880</a> 5K</li>
+                <li>
+                    <a href="javascript:set_mon(7680,4320)">7680x4320</a>
+                    <a href="https://en.wikipedia.org/wiki/8K_resolution">8K UHD</a>, UHD-2</li>
+                <li>
+                    <a href="javascript:set_mon(7680,4800)">7680x4800</a> WHUXGA</li>
+        </ul>
+        <b>Display sizes</b>
+        <br />
+        <a href="javascript:set_mon(0,0,7)">7"</a>
+        <a href="javascript:set_mon(0,0,9.7)">9.7"</a>
+        <a href="javascript:set_mon(0,0,10.1)">10.1"</a>
+        <a href="javascript:set_mon(0,0,11.6)">11.6"</a>
+        <a href="javascript:set_mon(0,0,12.1)">12.1"</a>
+        <a href="javascript:set_mon(0,0,13.3)">13.3"</a>
+        <br />
+        <a href="javascript:set_mon(0,0,14)">14"</a>
+        <a href="javascript:set_mon(0,0,15.6)">15.6"</a>
+        <a href="javascript:set_mon(0,0,17)">17"</a>
+        <a href="javascript:set_mon(0,0,18.5)">18.5"</a>
+        <br />
+        <a href="javascript:set_mon(0,0,19)">19"</a>
+        <a href="javascript:set_mon(0,0,20)">20"</a>
+        <a href="javascript:set_mon(0,0,21.5)">21.5"</a>
+        <a href="javascript:set_mon(0,0,22)">22"</a>
+        <a href="javascript:set_mon(0,0,23)">23"</a>
+        <a href="javascript:set_mon(0,0,23.6)">23.6"</a>
+        <br />
+        <a href="javascript:set_mon(0,0,24)">24"</a>
+        <a href="javascript:set_mon(0,0,27)">27"</a>
+        <a href="javascript:set_mon(0,0,30)">30"</a>
+        <a href="javascript:set_mon(0,0,32)">32"</a>
+        <a href="javascript:set_mon(0,0,37)">37"</a>
+        <a href="javascript:set_mon(0,0,42)">42"</a>
+        <a href="javascript:set_mon(0,0,46)">46"</a>
+        <br />
+        <a href="javascript:set_mon(0,0,50)">50"</a>
+        <a href="javascript:set_mon(0,0,60)">60"</a>
+        <a href="javascript:set_mon(0,0,65)">65"</a>
+    </div>
+    <hr />
+    <div> For VR HMDs, PPI is rather unimportant, what matters is
+        <abbr title="pixels per degree">PPD</abbr> after optics.</div>
+    <div> See also:
+        <a href="/fov/">FOV calculator</a>
+    </div>
+    <div style="text-align: right;">
+        &copy; 2004-2018 Sven Neuhaus &lt;sven
+        <script type="text/javascript">document.write('&#64;sven.de');</script>
+        <noscript>
+            <p style="display:inline">&#64;sven.de</p>
+        </noscript>&gt;. All rights reserved.
+        <br />
+        <a href="http://validator.w3.org/check?uri=referer" style="text-decoration: none; color: blue;" target="_top">Valid
+            <object data="html5_logo_32.svg" type="image/svg+xml"></object>
+        </a>
+    </div>
+</body>
+
+</html>
