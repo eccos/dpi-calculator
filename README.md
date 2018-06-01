@@ -1,5 +1,6 @@
 # dpi-calculator
 Fork of Sven Neuhaus' \<sven@sven.de\> [DPI Calculator](https://www.sven.de/dpi/)
+
 Try it out on https://codepen.io/eccos/pen/yEYeaB
 
 + Removed the table tags from the monitor data form and replaced it with divs
