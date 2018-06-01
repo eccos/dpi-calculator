@@ -2,7 +2,7 @@
 Fork of Sven Neuhaus' \<sven@sven.de\> [DPI Calculator](https://www.sven.de/dpi/)
 
 + Removed the table tags from the monitor data form and replaced it with divs
-+ Added "change" event to input fields, so the result would update when data is changed using increment buttons
++ Added "change" event to input fields, so the result will update when data is changed using increment buttons
 + Changed result data
   + Now displayed in a 2 column list
   + For the following monitor data "1920x1080 24in", the result displays as...
@@ -10,3 +10,4 @@ Fork of Sven Neuhaus' \<sven@sven.de\> [DPI Calculator](https://www.sven.de/dpi/
     + (After) 1920x1080 24in at 91.79 PPI
 + Removed "Noteworthy and common display sizes of monitors..." because I found no value in them.
 + Updated "Resolutions". Ordered by aspect ratio. Including only common ratios (16:9, 16:10, and ultrawide)
++ Removed js events (onclick, onkeyup, etc) from html attributes. Moved them into the js
