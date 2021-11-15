@@ -1,8 +1,9 @@
 # dpi-calculator
 Fork of Sven Neuhaus' \<sven@sven.de\> [DPI Calculator](https://www.sven.de/dpi/)
 
-Try it out on https://codepen.io/eccos/pen/yEYeaB
+Try it out on https://eccos.github.io/dpi-calculator/
 
+Differences from Sven's version:
 + Removed the table tags from the monitor data form and replaced it with divs
 + Added "change" event to input fields, so the result will update when data is changed using increment buttons
 + Changed result data
