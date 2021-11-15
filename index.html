@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DPI Calculator PPI Calculator</title>
+    <link href="dpiCalc.css" rel="stylesheet">
+    <script src="dpiCalc.js"></script>
+</head>
+
+<body>
+    <h1>DPI Calculator
+        <a href="https://en.wikipedia.org/wiki/Pixels_per_inch" title="Pixels per inch">PPI</a> Calculator</h1>
+    <h4>for displays with square
+        <a href="https://en.wikipedia.org/wiki/Pixel">pixels</a>.</h4>
+    <noscript>
+        <h2>This calculator requires JavaScript.</h2>
+    </noscript>
+    <div class="container">
+        <fieldset>
+            <legend>Monitor data</legend>
+            <div id="dataInputs">
+                <div>
+                    <label for="hor">Horizontal resolution (pixels):</label>
+                    <input id="hor" type="number" value="1280">
+                </div>
+                <div>
+                    <label for="vert">Vertical resolution (pixels):</label>
+                    <input id="vert" type="number" value="1024">
+                </div>
+                <div>
+                    <label for="diag">Diagonal (inches):</label>
+                    <input id="diag" type="number" value="24"> (
+                    <span id="metricdiag">xx</span>cm)
+                </div>
+            </div>
+            <div id="dataMetrics">
+                <div class="noWrap">Megapixels:
+                    <b id="mpix">?.?</b>
+                </div>
+                <div class="noWrap">Aspect ratio:
+                    <b id="aspect">?:?</b>
+                </div>
+            </div>
+            <div>
+                <b id="result"></b>
+                <input id="save" type="button" value="Remember">
+                <br>
+                <br>
+                <div class="colX2">
+                    <ul id="saved"></ul>
+                </div>
+            </div>
+        </fieldset>
+        </form>
+        <div id="multilist">
+            <ul id="mylist"></ul>
+        </div>
+    </div>
+    <hr>
+    <div> For VR HMDs, PPI is rather unimportant, what matters is
+        <abbr title="pixels per degree">PPD</abbr> after optics.</div>
+    <div style="text-align: right;">
+        &copy; 2004-2018 Sven Neuhaus &lt;sven &#64;sven.de&gt;. All rights reserved.
+    </div>
+</body>
+
+</html>
