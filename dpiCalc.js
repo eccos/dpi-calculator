@@ -134,8 +134,8 @@ function aspect_ratio(x, y) {
 }
 
 function set_mon(x, y, diag) {
-    if (x) inpHor.value = x;
-    if (y) inpVert.value = y;
+    if (x) inpHor.value = Number.parseInt(x);
+    if (y) inpVert.value = Number.parseInt(y);
     if (diag) inpDiag.value = diag;
     do_dpi();
 }
