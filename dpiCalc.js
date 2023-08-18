@@ -1,31 +1,3 @@
-const html = document.querySelector("html");
-const themeOptions = document.querySelector("#theme-options");
-
-themeOptions.addEventListener("click", (e) => {
-    /** @type {HTMLButtonElement} */
-    const btnSelectedOption = e.target;
-    const theme = btnSelectedOption.getAttribute("data-bs-theme-value");
-    // user indicates preference through OS setting (e.g. light or dark mode) or user agent setting
-    const preferDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
-    if (theme == "dark" || theme == "auto" && preferDarkTheme) {
-        html.setAttribute("data-bs-theme", "dark");
-    } else {
-        html.setAttribute("data-bs-theme", "light");
-    }
-
-    /** @type {HTMLUListElement} */
-    const ul = e.currentTarget;
-    /** @type {HTMLCollection} */
-    const liOptions = ul.children;
-    for (let liOption of liOptions) {
-        const btn = liOption.firstElementChild;
-        btn.classList.remove("active");
-        btn.setAttribute("aria-pressed", "false");
-    }
-    
-    btnSelectedOption.classList.add("active");
-    btnSelectedOption.setAttribute("aria-pressed", "true");
-});
 // input boxes
 const inpHor = document.querySelector("#hor");
 const inpVert = document.querySelector("#vert");
