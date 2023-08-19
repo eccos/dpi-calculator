@@ -77,9 +77,7 @@ function do_dpi() {
     const diag = inpDiag.value;
     if (y == 0 || x == 0) return;
     const result = calc_dpi(x, y, diag);
-    document.querySelector("#metricdiag").firstChild.data = round2(
-        result.metricdiag
-    );
+    document.querySelector("#metricdiag").textContent = round2(result.metricdiag) + " cm";
     document.querySelector("#result").innerHTML =
         inpHor.value + "x" + inpVert.value + " " +
         inpDiag.value +

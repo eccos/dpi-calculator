@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="container col-lg-11">
+    <div class="container">
         <h1>DPI Calculator
             <a href="https://en.wikipedia.org/wiki/Pixels_per_inch" title="Pixels per inch">PPI</a> Calculator
         </h1>
@@ -22,59 +22,58 @@
         <noscript>
             <h2>This calculator requires JavaScript.</h2>
         </noscript>
-        <div class="my-container">
-            <fieldset>
-                <legend>Monitor data</legend>
-                <div id="dataInputs">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label for="hor" class="col-form-label">Horizontal resolution (<abbr
-                                    title="pixels">px</abbr>):</label>
+        <div class="row my-container">
+            <div class="col-sm-5">
+                <fieldset>
+                    <legend>Monitor data</legend>
+                    <div class="row">
+                        <div class="col-sm-8" id="dataInputs">
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="hor" placeholder="Horizontal resolution (px)"
+                                    value="1280">
+                                <label for="hor">Width Resolution (px)</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="vert" placeholder="Vertical resolution (px)"
+                                    value="1024">
+                                <label for="vert">Height Resolution (px)</label>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="metricdiag"></span>
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="diag" placeholder="Diagonal (inches)"
+                                        value="24">
+                                    <label for="diag">Diagonal (inches)</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <input type="number" id="hor" class="form-control" value="1280">
-                        </div>
-                    </div>
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label for="vert" class="col-form-label">Vertical resolution (<abbr
-                                    title="pixels">px</abbr>):</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="number" id="vert" class="form-control" value="1024">
-                        </div>
-                    </div>
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label for="diag" class="col-form-label">Diagonal (inches):</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="number" id="diag" class="form-control" value="24">
-                        </div>
-                        <div class="col-auto">
-                            (<span id="metricdiag" class="form-text">xx</span>cm)
+                        <div class="col-sm-4" id="dataMetrics">
+                            <div class="noWrap">Megapixels: <b id="mpix">?.?</b></div>
+                            <div class="noWrap">Aspect ratio: <b id="aspect">?:?</b></div>
                         </div>
                     </div>
                     <div>
+                        <b id="result"></b>
+                        <input type="button" id="save" class="btn btn-primary" value="Remember">
+                        <br>
+                        <br>
+                        <div class="colX2" style="column-count: 2">
+                            <ul id="saved"></ul>
+                        </div>
                     </div>
+                </fieldset>
+            </div>
+            <!-- <div class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <div id="dataMetrics">
-                    <div class="noWrap">Megapixels: <b id="mpix">?.?</b></div>
-                    <div class="noWrap">Aspect ratio: <b id="aspect">?:?</b></div>
+                <div class="offcanvas-body">
+                    Content for the offcanvas goes here. You can place just about any Bootstrap component or custom
+                    elements here.
                 </div>
-                <div>
-                    <b id="result"></b>
-                    <input type="button" id="save" class="btn btn-primary" value="Remember">
-                    <br>
-                    <br>
-                    <div class="colX2">
-                        <ul id="saved"></ul>
-                    </div>
-                </div>
-            </fieldset>
-            </form>
-            <div id="multilist" class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary"
-                style="width: 380px;">
+            </div> -->
+            <div id="multilist" class="col-auto">
                 <div id="mylist" class="list-group list-group-flush border-bottom scrollarea">
                     <div class="d-flex w-100 align-items-center justify-content-between">
                         <strong class="mb-1">List group item heading</strong>
