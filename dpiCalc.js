@@ -1,9 +1,7 @@
-// input boxes
 const inpHor = document.querySelector("#hor");
 const inpVert = document.querySelector("#vert");
 const inpDiag = document.querySelector("#diag");
 
-// add events to input boxes
 inpHor.addEventListener("keyup", onKeyUp);
 inpVert.addEventListener("keyup", onKeyUp);
 inpDiag.addEventListener("keyup", onKeyUp);
@@ -11,7 +9,6 @@ inpHor.addEventListener("change", do_dpi);
 inpVert.addEventListener("change", do_dpi);
 inpDiag.addEventListener("change", do_dpi);
 
-// if key == "Enter", remember result, else calculate DPI/PPI
 function onKeyUp(e) {
     if (e.key == "Enter") {
         remember();
@@ -29,7 +26,6 @@ function remember() {
     const li = document.createElement("li");
     li.appendChild(document.createTextNode(result.textContent));
     savedContent.appendChild(li);
-    //savedContent.innerHTML = savedContent.innerHTML + document.querySelector("#result").innerHTML + "<br>";
 }
 
 set_mon(
@@ -152,12 +148,12 @@ function hsvToRgb(h, s, v) {
     let i;
     let f, p, q, t;
 
-    // Make sure our arguments stay in-range
+    // make sure arguments stay in-range
     h = Math.max(0, Math.min(360, h));
     s = Math.max(0, Math.min(100, s));
     v = Math.max(0, Math.min(100, v));
 
-    // We accept saturation and value arguments from 0 to 100 because that's
+    // accept saturation and value arguments from 0 to 100 because that's
     // how Photoshop represents those values. Internally, however, the
     // saturation and value are calculated from a range of 0 to 1. We make
     // that conversion here.
@@ -233,7 +229,6 @@ function gen_links() {
         [3840, 1600, "UW-QHD+"],
         [4096, 2160, "DCI 4K"]
     ];
-    let aspectRatioSection = "";
 
     for (let i = 0; i < data.length; i++) {
         const t = document.createTextNode(
@@ -251,13 +246,6 @@ function gen_links() {
         const ul = document.querySelector("#mylist");
 
         temp = aspect_ratio(x, y);
-        // if (aspectRatioSection != temp) {
-        //     aspectRatioSection = temp;
-
-        //     const li = document.createElement("li");
-        //     li.innerHTML = aspectRatioSection;
-        //     ul.appendChild(li);
-        // }
 
         const li = document.createElement("li");
         li.innerHTML = " (" + temp + ") " + data[i][2];
@@ -269,7 +257,7 @@ function gen_links() {
 
 function link_color(x, y, d) {
     const result = calc_dpi(x, y, d);
-    const size_factor = Math.max(1, 1 + (d - 4) / 19); // factor in the display size (4=1 80=5)
+    const size_factor = Math.max(1, 1 + (d - 4) / 19); // factor in display size (4=1 80=5)
     result.xppi *= size_factor;
     // green = 100dpi or lower, red = 320dpi or higher
     // hsv 120,                hsv -60
