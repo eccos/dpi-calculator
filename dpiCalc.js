@@ -38,8 +38,9 @@ setMonitorData(
 );
 genLinks();
 
-function round2(i) {
-    return Math.round(i * 100) / 100;
+function roundHundredth(i) {
+    const res = Math.round(i * 100) / 100;
+    return res;
 }
 
 function calcDpi(w, h, diag) {
@@ -73,16 +74,16 @@ function updateDisplayCalcs() {
     const diag = Number(inpDiag.value);
     if (h <= 0 || w <= 0) return;
     const result = calcDpi(w, h, diag);
-    document.querySelector("#metricdiag").textContent = `${round2(result.metricdiag)} cm`;
+    document.querySelector("#metricdiag").textContent = `${roundHundredth(result.metricdiag)} cm`;
     document.querySelector("#result").innerHTML = `${w}x${h} ${diag}in at
-    <span title="Y: ${round2(result.yppi)}">${round2(result.xppi)}</span>
+    <span title="Y: ${roundHundredth(result.yppi)}">${roundHundredth(result.xppi)}</span>
     <abbr title="pixels per inch">PPI</abbr>`;
     document.querySelector("#mpix").textContent = calcMegapixels(w, h);
     document.querySelector("#aspect").textContent = calcAspectRatio(w, h);
 }
 
 function calcMegapixels(w, h) {
-    return round2(w * h / 1000000);
+    return roundHundredth(w * h / 1000000);
 }
 
 function calcAspectRatio(w, h) {
@@ -117,8 +118,8 @@ function calcAspectRatio(w, h) {
     // unknown aspect ratio
     if (w > h)
         // "1.xx:1"
-        return `${round2(w / h)}:1`;
-    return `1:${round2(h / w)}`;
+        return `${roundHundredth(w / h)}:1`;
+    return `1:${roundHundredth(h / w)}`;
 }
 
 function setMonitorData(w, h, diag) {
