@@ -84,15 +84,16 @@ function do_dpi() {
         round2(result.xppi) +
         "</span>" +
         ' <abbr title="pixels per inch">PPI</abbr>';
-    document.querySelector("#aspect").firstChild.data = getAspectRatio(x, y);
-    document.querySelector("#mpix").firstChild.data = in_megapixels(x, y);
+    document.querySelector("#aspect").firstChild.data = calcAspectRatio(x, y);
+    document.querySelector("#mpix").firstChild.data = calcMegapixels(x, y);
 }
 
-function in_megapixels(x, y) {
-    return round2(x * y / 1000000);
+function calcMegapixels(w, h) {
+    return round2(w * h / 1000000);
 }
 
-function getAspectRatio(w, h) {
+
+function calcAspectRatio(w, h) {
     // common aspect ratios (car)
     const car = {
         "3:4": 3 / 4,
@@ -167,7 +168,7 @@ function genLinks() {
         });
 
         const ul = document.querySelector("#mylist");
-        const aspectRatio = getAspectRatio(w, h);
+        const aspectRatio = calcAspectRatio(w, h);
 
         const li = document.createElement("li");
         li.textContent = ` (${aspectRatio}) ${desc}`;
