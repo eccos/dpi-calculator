@@ -42,11 +42,11 @@ function round2(i) {
     return Math.round(i * 100) / 100;
 }
 
-function calc_dpi(x, y, diag) {
-    const ratio = y / x;
+function calcDpi(w, h, diag) {
+    const ratio = h / w;
     const xd = Math.sqrt(Math.pow(diag, 2) / (1 + Math.pow(ratio, 2)));
     const yd = xd * ratio;
-    const pitch = 25.4 / (x / xd); // metric
+    const pitch = 25.4 / (w / xd); // metric
     const result = {
         metricdiag: diag * 2.54,
         sizex: xd,
@@ -55,10 +55,10 @@ function calc_dpi(x, y, diag) {
         metricsizex: 2.54 * xd,
         metricsizey: 2.54 * yd,
         metricarea: xd * yd * 2.54 * 2.54,
-        xppi: x / xd,
-        yppi: y / yd,
+        xppi: w / xd,
+        yppi: h / yd,
         dotpitch: pitch,
-        sqppi: x / xd * y / yd
+        sqppi: w / xd * h / yd
     };
     return result;
 }
@@ -72,7 +72,7 @@ function updateDisplayCalcs() {
     const h = Number(inpVert.value);
     const diag = Number(inpDiag.value);
     if (h <= 0 || w <= 0) return;
-    const result = calc_dpi(w, h, diag);
+    const result = calcDpi(w, h, diag);
     document.querySelector("#metricdiag").textContent = `${round2(result.metricdiag)} cm`;
     document.querySelector("#result").innerHTML = `${w}x${h} ${diag}in at
     <span title="Y: ${round2(result.yppi)}">${round2(result.xppi)}</span>
