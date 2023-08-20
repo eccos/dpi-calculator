@@ -28,7 +28,7 @@ function remember() {
     savedContent.appendChild(li);
 }
 
-set_mon(
+setMonitorData(
     window.devicePixelRatio
         ? window.devicePixelRatio * screen.width
         : screen.width,
@@ -127,10 +127,10 @@ function aspect_ratio(x, y) {
     else return "1:" + round2(y / x);
 }
 
-function set_mon(x, y, diag) {
-    if (x) inpHor.value = Number.parseInt(x);
-    if (y) inpVert.value = Number.parseInt(y);
-    if (diag) inpDiag.value = diag;
+function setMonitorData(w, h, diag) {
+    if (w) inpHor.value = Number.parseInt(w);
+    if (h) inpVert.value = Number.parseInt(h);
+    if (diag) inpDiag.value = Number.parseInt(diag);
     do_dpi();
 }
 
@@ -162,7 +162,7 @@ function genLinks() {
         a.appendChild(textNode);
         a.href = "#";
         a.addEventListener("click", () => {
-            set_mon(w, h);
+            setMonitorData(w, h);
         });
 
         const ul = document.querySelector("#mylist");
