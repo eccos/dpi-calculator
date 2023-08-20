@@ -36,7 +36,7 @@ set_mon(
         ? window.devicePixelRatio * screen.height
         : screen.height
 );
-gen_links();
+genLinks();
 
 function round2(i) {
     return Math.round(i * 100) / 100;
@@ -208,7 +208,7 @@ function hsvToRgb(h, s, v) {
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 }
 
-function gen_links() {
+function genLinks() {
     const data = [
         [1280, 720, "HDTV, 720p"],
         [1366, 768, "HD"],
@@ -230,25 +230,20 @@ function gen_links() {
         [4096, 2160, "DCI 4K"]
     ];
 
-    for (let i = 0; i < data.length; i++) {
-        const t = document.createTextNode(
-            data[i][0] + "x" + data[i][1]
-        );
+    for (const [w, h, desc] of data) {
+        const textNode = document.createTextNode(`${w}x${h}`);
         const a = document.createElement("a");
-        a.appendChild(t);
+        a.appendChild(textNode);
         a.href = "#";
-        const x = data[i][0];
-        const y = data[i][1];
-        a.addEventListener("click", function () {
-            set_mon(x, y);
+        a.addEventListener("click", () => {
+            set_mon(w, h);
         });
 
         const ul = document.querySelector("#mylist");
-
-        temp = aspect_ratio(x, y);
+        const aspectRatio = aspect_ratio(w, h);
 
         const li = document.createElement("li");
-        li.innerHTML = " (" + temp + ") " + data[i][2];
+        li.textContent = ` (${aspectRatio}) ${desc}`;
         li.insertBefore(a, li.firstChild);
 
         ul.appendChild(li);
