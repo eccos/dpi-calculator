@@ -84,7 +84,7 @@ function do_dpi() {
         round2(result.xppi) +
         "</span>" +
         ' <abbr title="pixels per inch">PPI</abbr>';
-    document.querySelector("#aspect").firstChild.data = aspect_ratio(x, y);
+    document.querySelector("#aspect").firstChild.data = getAspectRatio(x, y);
     document.querySelector("#mpix").firstChild.data = in_megapixels(x, y);
 }
 
@@ -92,9 +92,9 @@ function in_megapixels(x, y) {
     return round2(x * y / 1000000);
 }
 
-function aspect_ratio(x, y) {
+function getAspectRatio(w, h) {
+    // common aspect ratios (car)
     const car = {
-        // common aspect ratios we recognize
         "3:4": 3 / 4,
         "1:1": 1,
         "5:4": 5 / 4,
@@ -106,25 +106,26 @@ function aspect_ratio(x, y) {
         "16:10": 16 / 10,
         "16:9": 16 / 9,
         "17:9": 17 / 9,
-        "21:9": 21 / 9
-        //		"Academy ratio 1.375:1" : 1.375,
-        //		"CinemaScope 2.35:1" : 2.35,
-        //		"Cinemara 2.59:1" : 2.59,
-        //		"Ultra Panavision 70 2.75:1" : 2.75,
-        //		"MGM 65 2.76:1" : 2.76,
+        "21:9": 21 / 9,
+        "Academy ratio 1.375:1": 1.375,
+        "CinemaScope 2.35:1": 2.35,
+        "Cinemara 2.59:1": 2.59,
+        "Ultra Panavision 70 2.75:1": 2.75,
+        "MGM 65 2.76:1": 2.76,
     };
-    const ratio = x / y;
-    for (ratio_name in car) {
-        const r2 = car[ratio_name];
-        if (Math.abs(r2 / ratio - 1) < 0.016)
-            // 1.6% error margin is ok
-            return ratio_name;
+    const ratio = w / h;
+
+    for (const ratioName in car) {
+        const commonRatio = car[ratioName];
+        // 1.6% error margin is ok
+        if (Math.abs(commonRatio / ratio - 1) < 0.016)
+            return ratioName;
     }
-    // this aspect ratio is unknown.
-    if (x - 0 > y - 0)
+    // unknown aspect ratio
+    if (w > h)
         // "1.xx:1"
-        return round2(x / y) + ":1";
-    else return "1:" + round2(y / x);
+        return `${round2(w / h)}:1`;
+    return `1:${round2(h / w)}`;
 }
 
 function setMonitorData(w, h, diag) {
@@ -166,7 +167,7 @@ function genLinks() {
         });
 
         const ul = document.querySelector("#mylist");
-        const aspectRatio = aspect_ratio(w, h);
+        const aspectRatio = getAspectRatio(w, h);
 
         const li = document.createElement("li");
         li.textContent = ` (${aspectRatio}) ${desc}`;
