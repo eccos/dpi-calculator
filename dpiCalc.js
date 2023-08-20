@@ -5,15 +5,15 @@ const inpDiag = document.querySelector("#diag");
 inpHor.addEventListener("keyup", onKeyUp);
 inpVert.addEventListener("keyup", onKeyUp);
 inpDiag.addEventListener("keyup", onKeyUp);
-inpHor.addEventListener("change", do_dpi);
-inpVert.addEventListener("change", do_dpi);
-inpDiag.addEventListener("change", do_dpi);
+inpHor.addEventListener("change", updateDisplayCalcs);
+inpVert.addEventListener("change", updateDisplayCalcs);
+inpDiag.addEventListener("change", updateDisplayCalcs);
 
 function onKeyUp(e) {
     if (e.key == "Enter") {
         remember();
     } else {
-        do_dpi();
+        updateDisplayCalcs();
     }
 }
 
@@ -63,35 +63,27 @@ function calc_dpi(x, y, diag) {
     return result;
 }
 
-function do_dpi() {
+function updateDisplayCalcs() {
     if (!document.getElementById) {
         alert("Your browser does not support the basic DOM API, sorry.");
         return;
     }
-    const x = inpHor.value;
-    const y = inpVert.value;
-    const diag = inpDiag.value;
-    if (y == 0 || x == 0) return;
-    const result = calc_dpi(x, y, diag);
-    document.querySelector("#metricdiag").textContent = round2(result.metricdiag) + " cm";
-    document.querySelector("#result").innerHTML =
-        inpHor.value + "x" + inpVert.value + " " +
-        inpDiag.value +
-        "in at " +
-        '<span title="Y: ' +
-        round2(result.yppi) +
-        '">' +
-        round2(result.xppi) +
-        "</span>" +
-        ' <abbr title="pixels per inch">PPI</abbr>';
-    document.querySelector("#aspect").firstChild.data = calcAspectRatio(x, y);
-    document.querySelector("#mpix").firstChild.data = calcMegapixels(x, y);
+    const w = Number(inpHor.value);
+    const h = Number(inpVert.value);
+    const diag = Number(inpDiag.value);
+    if (h <= 0 || w <= 0) return;
+    const result = calc_dpi(w, h, diag);
+    document.querySelector("#metricdiag").textContent = `${round2(result.metricdiag)} cm`;
+    document.querySelector("#result").innerHTML = `${w}x${h} ${diag}in at
+    <span title="Y: ${round2(result.yppi)}">${round2(result.xppi)}</span>
+    <abbr title="pixels per inch">PPI</abbr>`;
+    document.querySelector("#mpix").textContent = calcMegapixels(w, h);
+    document.querySelector("#aspect").textContent = calcAspectRatio(w, h);
 }
 
 function calcMegapixels(w, h) {
     return round2(w * h / 1000000);
 }
-
 
 function calcAspectRatio(w, h) {
     // common aspect ratios (car)
@@ -133,7 +125,7 @@ function setMonitorData(w, h, diag) {
     if (w) inpHor.value = Number.parseInt(w);
     if (h) inpVert.value = Number.parseInt(h);
     if (diag) inpDiag.value = Number.parseInt(diag);
-    do_dpi();
+    updateDisplayCalcs();
 }
 
 function genLinks() {
