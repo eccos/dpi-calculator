@@ -254,17 +254,3 @@ function gen_links() {
         ul.appendChild(li);
     }
 }
-
-function link_color(x, y, d) {
-    const result = calc_dpi(x, y, d);
-    const size_factor = Math.max(1, 1 + (d - 4) / 19); // factor in display size (4=1 80=5)
-    result.xppi *= size_factor;
-    // green = 100dpi or lower, red = 320dpi or higher
-    // hsv 120,                hsv -60
-    // 150 to 390 (-30)
-    const hsv =
-        150 - Math.min(180, Math.max(0, (result.xppi - 100) / (400 - 72) * 120));
-    if (hsv < 0) hsv += 360;
-    const c = hsvToRgb(hsv, 25, 100);
-    return "rgb(" + c[0] + "," + c[1] + "," + c[2] + ")";
-}
