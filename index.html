@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DPI Calculator PPI Calculator</title>
+    <title>PPI Calculator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <!-- <link href="dpiCalc.css" rel="stylesheet"> -->
+    <!-- <link href="index.css" rel="stylesheet"> -->
 </head>
 
 <body>
     <div class="container">
-        <h1>DPI Calculator
+        <h1>PPI Calculator
             <a href="https://en.wikipedia.org/wiki/Pixels_per_inch" title="Pixels per inch">PPI</a> Calculator
         </h1>
         <p class="lead text-body-secondary">for displays with square
@@ -22,20 +22,20 @@
         <noscript>
             <h2>This calculator requires JavaScript.</h2>
         </noscript>
-        <div class="row my-container">
+        <div class="row">
             <div class="col-sm-5">
                 <fieldset>
                     <legend>Monitor data</legend>
                     <div class="row">
                         <div class="col-sm-8" id="dataInputs">
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="hor" placeholder="Horizontal resolution (px)"
-                                    value="1280">
+                                <input type="number" class="form-control" id="hor"
+                                    placeholder="Horizontal resolution (px)" value="1280">
                                 <label for="hor">Width Resolution (px)</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="vert" placeholder="Vertical resolution (px)"
-                                    value="1024">
+                                <input type="number" class="form-control" id="vert"
+                                    placeholder="Vertical resolution (px)" value="1024">
                                 <label for="vert">Height Resolution (px)</label>
                             </div>
                             <div class="input-group mb-3">
@@ -83,19 +83,17 @@
         </div>
     </div>
 
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-5 d-flex justify-content-end">
-                <span class="mb-3 mb-md-0 text-body-secondary">For VR HMDs, PPI is rather unimportant, what matters is
-                    <abbr title="pixels per degree">PPD</abbr> after optics.</span>
-            </div>
-            <div class="col-md-5 d-flex align-items-center">
-                <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2004-2023 Sven Neuhaus
-                    &lt;sven-dpi&#64;sven.de&gt;.
-                    All rights reserved.</span>
-            </div>
-        </footer>
-    </div>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-5 d-flex justify-content-end">
+            <span class="mb-3 mb-md-0 text-body-secondary">For VR HMDs, PPI is rather unimportant, what matters is
+                <abbr title="pixels per degree">PPD</abbr> after optics.</span>
+        </div>
+        <div class="col-md-5 d-flex align-items-center">
+            <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2004-2023 Sven Neuhaus
+                &lt;sven-dpi&#64;sven.de&gt;.
+                All rights reserved.</span>
+        </div>
+    </footer>
 
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
         <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
@@ -135,7 +133,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-    <script src="dpiCalc.js"></script>
+    <script src="index.js"></script>
     <script src="themeSelector.js"></script>
 </body>
 

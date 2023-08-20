@@ -1,0 +1,82 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Trebuchet MS, Gill Sans, Futura, Sans, Verdana, Arial, Helvetica;
+}
+
+.container {
+  display: flex;
+}
+
+fieldset {
+  flex: none;
+  height: fit-content;
+}
+
+fieldset,
+div#dataInputs,
+div#dataMetrics {
+  display: inline-block;
+}
+fieldset,
+div#dataInputs,
+div#dataMetrics {
+  vertical-align: top;
+}
+div#dataInputs,
+div#dataMetrics {
+  padding: 5px;
+}
+
+.noWrap {
+  white-space: nowrap;
+}
+
+label {
+  display: inline-block;
+  vertical-align: top;
+  width: 220px;
+}
+label.two {
+  display: inline-block;
+  vertical-align: middle;
+  /*		width: 310px; */
+}
+input[type="number"] {
+  text-align: right;
+  width: 4em;
+}
+
+ul, ol {
+  padding-left: 1.2em;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top-width: 0;
+  border-bottom-width: 0;
+}
+
+div#multilist {
+  display: inline-block;
+}
+
+ul#mylist {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+#mylist>li {
+  margin-left: 20px;
+  width: 330px;
+}
+
+.colX2 {
+  column-count: 2;
+}
