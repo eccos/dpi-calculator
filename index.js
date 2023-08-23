@@ -19,12 +19,13 @@ const divPpiResult = document.querySelector("#result");
 const btnSave = document.querySelector("#save");
 const ulSavedPpiResults = document.querySelector("#saved");
 
-btnSave.addEventListener("click", savePpiResult);
-function savePpiResult() {
+btnSave.addEventListener("click", () => {
     const li = document.createElement("li");
-    li.appendChild(document.createTextNode(divPpiResult.textContent));
+    const ppiResult = document.createTextNode(divPpiResult.textContent);
+    li.appendChild(ppiResult);
     ulSavedPpiResults.appendChild(li);
-}
+
+});
 
 setMonitorData(
     window.devicePixelRatio
