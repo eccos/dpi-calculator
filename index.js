@@ -12,9 +12,7 @@ inpDiag.addEventListener("change", updateDisplayCalcs);
 function onKeyUp(e) {
     if (e.key == "Enter") {
         remember();
-    } else {
-        updateDisplayCalcs();
-    }
+    } 
 }
 
 const result = document.querySelector("#result");
@@ -74,7 +72,7 @@ function updateDisplayCalcs() {
     const diag = Number(inpDiag.value);
     if (h <= 0 || w <= 0) return;
     const result = calcDpi(w, h, diag);
-    document.querySelector("#metricdiag").textContent = `${roundHundredth(result.metricdiag)} cm`;
+    // document.querySelector("#metricdiag").textContent = `${roundHundredth(result.metricdiag)} cm`;
     document.querySelector("#result").innerHTML = `${w}x${h} ${diag}in at
     <span title="Y: ${roundHundredth(result.yppi)}">${roundHundredth(result.xppi)}</span>
     <abbr title="pixels per inch">PPI</abbr>`;
