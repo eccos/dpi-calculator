@@ -23,9 +23,18 @@ const linkData = [
     [4096, 2160, "DCI 4K"]
 ];
 
-const inpWReso = document.querySelector("#hor");
-const inpHReso = document.querySelector("#vert");
+const inpWReso = document.querySelector("#resoW");
+const inpHReso = document.querySelector("#resoH");
 const inpDiagReso = document.querySelector("#diag");
+
+// const metricDiagEl = document.querySelector("#metricdiag");
+const elMegaPixel = document.querySelector("#mpix");
+const elAspect = document.querySelector("#aspect");
+
+const elPpiResult = document.querySelector("#ppiResult");
+const btnSaveResult = document.querySelector("#saveResult");
+const ulSavedPpiResults = document.querySelector("#savedResults");
+const ulCommonResolutions = document.querySelector("#commonResolutions");
 
 inpWReso.addEventListener("keyup", onEnter);
 inpHReso.addEventListener("keyup", onEnter);
@@ -34,22 +43,18 @@ inpWReso.addEventListener("change", updateDisplayCalcs);
 inpHReso.addEventListener("change", updateDisplayCalcs);
 inpDiagReso.addEventListener("change", updateDisplayCalcs);
 
+btnSaveResult.addEventListener("click", () => {
+    const li = document.createElement("li");
+    const ppiResult = document.createTextNode(elPpiResult.textContent);
+    li.appendChild(ppiResult);
+    ulSavedPpiResults.appendChild(li);
+});
+
 function onEnter(e) {
     if (e.key == "Enter") {
         savePpiResult();
     }
 }
-
-const divPpiResult = document.querySelector("#result");
-const btnSave = document.querySelector("#save");
-const ulSavedPpiResults = document.querySelector("#saved");
-
-btnSave.addEventListener("click", () => {
-    const li = document.createElement("li");
-    const ppiResult = document.createTextNode(divPpiResult.textContent);
-    li.appendChild(ppiResult);
-    ulSavedPpiResults.appendChild(li);
-});
 
 function setMonitorData(w, h, diag) {
     if (w) inpWReso.value = Number.parseInt(w);
@@ -64,12 +69,12 @@ function updateDisplayCalcs() {
     const diag = Number(inpDiagReso.value);
     if (h <= 0 || w <= 0) return;
     const result = calcDpi(w, h, diag);
-    // document.querySelector("#metricdiag").textContent = `${roundHundredth(result.metricdiag)} cm`;
-    document.querySelector("#result").innerHTML = `${w}x${h} ${diag}in at
+    // metricDiagEl.textContent = `${roundHundredth(result.metricdiag)} cm`;
+    elPpiResult.innerHTML = `${w}x${h} ${diag}in at
     <span title="Y: ${roundHundredth(result.hPpi)}">${roundHundredth(result.wPpi)}</span>
     <abbr title="pixels per inch">PPI</abbr>`;
-    document.querySelector("#mpix").textContent = calcMegapixels(w, h);
-    document.querySelector("#aspect").textContent = calcAspectRatio(w, h);
+    elMegaPixel.textContent = calcMegapixels(w, h);
+    elAspect.textContent = calcAspectRatio(w, h);
 }
 
 function calcDpi(w, h, diag) {
@@ -138,8 +143,8 @@ function calcAspectRatio(w, h) {
     return `1:${roundHundredth(h / w)}`;
 }
 
-function genLink(linkData) {
-    const [w, h, desc] = linkData;
+function genLink(linkDataElem) {
+    const [w, h, desc] = linkDataElem;
     const a = document.createElement("a");
     a.textContent = `${w}x${h}`;
     a.href = "#";
@@ -147,14 +152,13 @@ function genLink(linkData) {
         setMonitorData(w, h);
     });
 
-    const ul = document.querySelector("#mylist");
     const aspectRatio = calcAspectRatio(w, h);
 
     const li = document.createElement("li");
     li.textContent = ` (${aspectRatio}) ${desc}`;
     li.insertBefore(a, li.firstChild);
 
-    ul.appendChild(li);
+    return li;
 }
 
 setMonitorData(
@@ -165,4 +169,6 @@ setMonitorData(
         ? window.devicePixelRatio * screen.height
         : screen.height
 );
-linkData.forEach(genLink);
+linkData.forEach((linkDataElem) => {
+    ulCommonResolutions.appendChild(genLink(linkDataElem));
+});

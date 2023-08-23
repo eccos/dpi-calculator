@@ -30,15 +30,15 @@
                 <fieldset>
                     <legend>Monitor data</legend>
                     <div class="row">
-                        <div class="col-7 col-sm-12 col-md-6" id="dataInputs">
+                        <div class="col-7 col-sm-12 col-md-6">
                             <div class="form-floating mb-2">
-                                <input type="number" class="form-control" id="hor"
-                                    placeholder="Horizontal resolution (px)" value="1280">
+                                <input type="number" class="form-control" id="resoW" placeholder="Width resolution (px)"
+                                    value="1280">
                                 <label for="hor">Width Resolution (px)</label>
                             </div>
                             <div class="form-floating mb-2">
-                                <input type="number" class="form-control" id="vert"
-                                    placeholder="Vertical resolution (px)" value="1024">
+                                <input type="number" class="form-control" id="resoH" placeholder="Height resolution (px)"
+                                    value="1024">
                                 <label for="vert">Height Resolution (px)</label>
                             </div>
                             <div class="input-group mb-2">
@@ -50,24 +50,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-5 col-sm-12 col-md-6 mb-2" id="dataMetrics">
+                        <div class="col-5 col-sm-12 col-md-6 mb-2">
                             <div class="noWrap">Megapixels: <b id="mpix">?.?</b></div>
                             <div class="noWrap">Aspect ratio: <b id="aspect">?:?</b></div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="mb-2"><b id="result"></b></div>
+                        <div class="mb-2"><b id="ppiResult"></b></div>
                         <div class="mb-2">
-                            <input type="button" class="btn btn-primary" id="save" value="Remember">
+                            <input type="button" class="btn btn-primary" id="saveResult" value="Remember">
                         </div>
                         <div class="mb-2 colX2" style="column-count: 2">
-                            <ul id="saved"></ul>
+                            <ul id="savedResults"></ul>
                         </div>
                     </div>
                 </fieldset>
             </div>
-            <div class="col-12 col-sm-7 col-md-6" id="multilist">
-                <div class="list-group list-group-flush border-bottom scrollarea" id="mylist">
+            <div class="col-12 col-sm-7 col-md-6">
+                <div class="list-group list-group-flush border-bottom scrollarea" id="commonResolutions">
                     <div class="d-flex w-100 align-items-center justify-content-between">
                         <strong class="mb-1">Common Resolutions</strong>
                     </div>
