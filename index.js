@@ -1,3 +1,7 @@
+if (!document.querySelector) {
+    alert("Your browser does not support the basic DOM API, sorry.");
+}
+
 const inpWReso = document.querySelector("#hor");
 const inpHReso = document.querySelector("#vert");
 const inpDiagReso = document.querySelector("#diag");
@@ -71,10 +75,6 @@ function calcDpi(w, h, diag) {
 }
 
 function updateDisplayCalcs() {
-    if (!document.getElementById) {
-        alert("Your browser does not support the basic DOM API, sorry.");
-        return;
-    }
     const w = Number(inpWReso.value);
     const h = Number(inpHReso.value);
     const diag = Number(inpDiagReso.value);
