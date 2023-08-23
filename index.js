@@ -37,6 +37,13 @@ setMonitorData(
 );
 genLinks();
 
+function setMonitorData(w, h, diag) {
+    if (w) inpWReso.value = Number.parseInt(w);
+    if (h) inpHReso.value = Number.parseInt(h);
+    if (diag) inpDiagReso.value = Number.parseInt(diag);
+    updateDisplayCalcs();
+}
+
 function roundHundredth(i) {
     const res = Math.round(i * 100) / 100;
     return res;
@@ -44,21 +51,21 @@ function roundHundredth(i) {
 
 function calcDpi(w, h, diag) {
     const ratio = h / w;
-    const xd = Math.sqrt(Math.pow(diag, 2) / (1 + Math.pow(ratio, 2)));
-    const yd = xd * ratio;
-    const pitch = 25.4 / (w / xd); // metric
+    const wd = Math.sqrt(Math.pow(diag, 2) / (1 + Math.pow(ratio, 2)));
+    const hd = wd * ratio;
+    const pitch = 25.4 / (w / wd); // metric
     const result = {
-        metricdiag: diag * 2.54,
-        sizex: xd,
-        sizey: yd,
-        area: xd * yd,
-        metricsizex: 2.54 * xd,
-        metricsizey: 2.54 * yd,
-        metricarea: xd * yd * 2.54 * 2.54,
-        xppi: w / xd,
-        yppi: h / yd,
-        dotpitch: pitch,
-        sqppi: w / xd * h / yd
+        metricDiag: 2.54 * diag,
+        sizeW: wd,
+        sizeH: hd,
+        area: wd * hd,
+        metricSizeW: 2.54 * wd,
+        metricSizeH: 2.54 * hd,
+        metricArea: 2.54 * 2.54 * wd * hd,
+        wPpi: w / wd,
+        hPpi: h / hd,
+        dotPitch: pitch,
+        sqPpi: w / wd * h / hd
     };
     return result;
 }
@@ -75,7 +82,7 @@ function updateDisplayCalcs() {
     const result = calcDpi(w, h, diag);
     // document.querySelector("#metricdiag").textContent = `${roundHundredth(result.metricdiag)} cm`;
     document.querySelector("#result").innerHTML = `${w}x${h} ${diag}in at
-    <span title="Y: ${roundHundredth(result.yppi)}">${roundHundredth(result.xppi)}</span>
+    <span title="Y: ${roundHundredth(result.hPpi)}">${roundHundredth(result.wPpi)}</span>
     <abbr title="pixels per inch">PPI</abbr>`;
     document.querySelector("#mpix").textContent = calcMegapixels(w, h);
     document.querySelector("#aspect").textContent = calcAspectRatio(w, h);
@@ -119,13 +126,6 @@ function calcAspectRatio(w, h) {
         // "1.xx:1"
         return `${roundHundredth(w / h)}:1`;
     return `1:${roundHundredth(h / w)}`;
-}
-
-function setMonitorData(w, h, diag) {
-    if (w) inpWReso.value = Number.parseInt(w);
-    if (h) inpHReso.value = Number.parseInt(h);
-    if (diag) inpDiagReso.value = Number.parseInt(diag);
-    updateDisplayCalcs();
 }
 
 function genLinks() {
