@@ -1,29 +1,29 @@
-const inpHor = document.querySelector("#hor");
-const inpVert = document.querySelector("#vert");
-const inpDiag = document.querySelector("#diag");
+const inpWReso = document.querySelector("#hor");
+const inpHReso = document.querySelector("#vert");
+const inpDiagReso = document.querySelector("#diag");
 
-inpHor.addEventListener("keyup", onKeyUp);
-inpVert.addEventListener("keyup", onKeyUp);
-inpDiag.addEventListener("keyup", onKeyUp);
-inpHor.addEventListener("change", updateDisplayCalcs);
-inpVert.addEventListener("change", updateDisplayCalcs);
-inpDiag.addEventListener("change", updateDisplayCalcs);
+inpWReso.addEventListener("keyup", onEnter);
+inpHReso.addEventListener("keyup", onEnter);
+inpDiagReso.addEventListener("keyup", onEnter);
+inpWReso.addEventListener("change", updateDisplayCalcs);
+inpHReso.addEventListener("change", updateDisplayCalcs);
+inpDiagReso.addEventListener("change", updateDisplayCalcs);
 
-function onKeyUp(e) {
+function onEnter(e) {
     if (e.key == "Enter") {
-        remember();
+        savePpiResult();
     } 
 }
 
-const result = document.querySelector("#result");
+const divPpiResult = document.querySelector("#result");
 const btnSave = document.querySelector("#save");
-const savedContent = document.querySelector("#saved");
+const ulSavedPpiResults = document.querySelector("#saved");
 
-btnSave.addEventListener("click", remember);
-function remember() {
+btnSave.addEventListener("click", savePpiResult);
+function savePpiResult() {
     const li = document.createElement("li");
-    li.appendChild(document.createTextNode(result.textContent));
-    savedContent.appendChild(li);
+    li.appendChild(document.createTextNode(divPpiResult.textContent));
+    ulSavedPpiResults.appendChild(li);
 }
 
 setMonitorData(
@@ -67,9 +67,9 @@ function updateDisplayCalcs() {
         alert("Your browser does not support the basic DOM API, sorry.");
         return;
     }
-    const w = Number(inpHor.value);
-    const h = Number(inpVert.value);
-    const diag = Number(inpDiag.value);
+    const w = Number(inpWReso.value);
+    const h = Number(inpHReso.value);
+    const diag = Number(inpDiagReso.value);
     if (h <= 0 || w <= 0) return;
     const result = calcDpi(w, h, diag);
     // document.querySelector("#metricdiag").textContent = `${roundHundredth(result.metricdiag)} cm`;
@@ -121,9 +121,9 @@ function calcAspectRatio(w, h) {
 }
 
 function setMonitorData(w, h, diag) {
-    if (w) inpHor.value = Number.parseInt(w);
-    if (h) inpVert.value = Number.parseInt(h);
-    if (diag) inpDiag.value = Number.parseInt(diag);
+    if (w) inpWReso.value = Number.parseInt(w);
+    if (h) inpHReso.value = Number.parseInt(h);
+    if (diag) inpDiagReso.value = Number.parseInt(diag);
     updateDisplayCalcs();
 }
 
