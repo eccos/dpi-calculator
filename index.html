@@ -12,18 +12,21 @@
 </head>
 
 <body>
+    <noscript>
+        <h2>Calculator requires JavaScript to run.</h2>
+    </noscript>
     <div class="container">
-        <h1>PPI Calculator
-            <a href="https://en.wikipedia.org/wiki/Pixels_per_inch" title="Pixels per inch">PPI</a> Calculator
-        </h1>
-        <p class="lead text-body-secondary">for displays with square
-            <a href="https://en.wikipedia.org/wiki/Pixel">pixels</a>.
-        </p>
-        <noscript>
-            <h2>This calculator requires JavaScript.</h2>
-        </noscript>
+        <header>
+            <h1>PPI Calculator
+                <a href="https://en.wikipedia.org/wiki/Pixels_per_inch" title="Pixels per inch">PPI</a> Calculator
+            </h1>
+            <p class="lead text-body-secondary">for displays with square
+                <a href="https://en.wikipedia.org/wiki/Pixel">pixels</a>.
+            </p>
+        </header>
+
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-auto">
                 <fieldset>
                     <legend>Monitor data</legend>
                     <div class="row">
@@ -39,7 +42,7 @@
                                 <label for="vert">Height Resolution (px)</label>
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="metricdiag"></span>
+                                <!-- <span class="input-group-text" id="metricdiag"></span> -->
                                 <div class="form-floating">
                                     <input type="number" class="form-control" id="diag" placeholder="Diagonal (inches)"
                                         value="24">
@@ -52,9 +55,9 @@
                             <div class="noWrap">Aspect ratio: <b id="aspect">?:?</b></div>
                         </div>
                     </div>
-                    <div>
+                    <div class="float-end">
                         <b id="result"></b>
-                        <input type="button" id="save" class="btn btn-primary" value="Remember">
+                        <input type="button" class="btn btn-primary" id="save" value="Remember">
                         <br>
                         <br>
                         <div class="colX2" style="column-count: 2">
@@ -63,18 +66,8 @@
                     </div>
                 </fieldset>
             </div>
-            <!-- <div class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    Content for the offcanvas goes here. You can place just about any Bootstrap component or custom
-                    elements here.
-                </div>
-            </div> -->
-            <div id="multilist" class="col-auto">
-                <div id="mylist" class="list-group list-group-flush border-bottom scrollarea">
+            <div class="col-auto" id="multilist">
+                <div class="list-group list-group-flush border-bottom scrollarea" id="mylist">
                     <div class="d-flex w-100 align-items-center justify-content-between">
                         <strong class="mb-1">List group item heading</strong>
                     </div>
@@ -102,7 +95,7 @@
                 alt="Half circle image for website Auto theme">
             <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
         </button>
-        <ul id="theme-options" class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <ul class="dropdown-menu dropdown-menu-end shadow" id="theme-options" aria-labelledby="bd-theme-text">
             <li>
                 <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light"
                     aria-pressed="true">
